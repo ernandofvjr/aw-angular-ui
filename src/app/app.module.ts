@@ -1,3 +1,5 @@
+import { PessoaModule } from './pessoa/pessoa.module';
+import { SharedModule } from './shared/shared.module';
 import { LancamentoModule } from './lancamento/lancamento.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -16,7 +18,9 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
 
-    LancamentoModule
+    LancamentoModule,
+    PessoaModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
