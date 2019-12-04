@@ -1,3 +1,6 @@
+import { ROUTES } from './app.routes';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from './core/core.module';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { SharedModule } from './shared/shared.module';
 import { LancamentoModule } from './lancamento/lancamento.module';
@@ -20,7 +23,10 @@ import { AppComponent } from './app.component';
 
     LancamentoModule,
     PessoaModule,
-    SharedModule
+    SharedModule,
+    CoreModule,
+
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,7 +26,12 @@ label {
 }
 
 .col-acoes {
-  width: 100px;
+  width: 110px;
   text-align: center;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
 }
 

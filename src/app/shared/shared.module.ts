@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
+
+import { MessageComponent } from './message/message.component';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [MessageComponent, PaginaNaoEncontradaComponent],
   imports: [
     CommonModule
   ],
-  exports: [NavbarComponent]
+  exports: [MessageComponent, PaginaNaoEncontradaComponent]
 })
 export class SharedModule { }

@@ -47,7 +47,7 @@
                     <td class="col-valor" [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">{{lanc.valor | number:'1.2-2'}}</td>
 
                     <td class="col-acoes">
-                      <button pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
+                      <button style="margin-right: 10px" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
                       <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
                     </td>
 
@@ -57,7 +57,7 @@
     </div>
 
     <div class="ui-g-12">
-      <p-button label="Novo Lançamento" ></p-button>
+      <p-button routerLink="/lancamentos/novo" label="Novo Lançamento" ></p-button>
     </div>
 
   </div>

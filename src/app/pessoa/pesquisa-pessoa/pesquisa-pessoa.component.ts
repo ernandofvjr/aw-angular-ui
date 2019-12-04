@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PesquisaPessoaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private title: Title) { }
   pessoas = [
     { nome: 'Manoel Pinheiro', cidade: 'Uberlândia', estado: 'MG', ativo: true },
     { nome: 'Sebastião da Silva', cidade: 'São Paulo', estado: 'SP', ativo: false },
@@ -18,6 +19,7 @@ export class PesquisaPessoaComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de pessoas');
   }
 
 }
