@@ -1,3 +1,5 @@
+import { LancamentoFilter } from './../../core/classes/lancamento-filter';
+import { LancamentoService } from './../../core/services/lancamento.service';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PesquisaLancamentoComponent implements OnInit {
 
-  constructor(private title: Title) { }
+  constructor(private title: Title, private lancamentoService: LancamentoService) { }
   lancamentos = [
     { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5, 30),
       dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
@@ -25,8 +27,20 @@ export class PesquisaLancamentoComponent implements OnInit {
     { tipo: 'DESPESA', descricao: 'Mensalidade musculação', dataVencimento: new Date(2017, 6, 13),
       dataPagamento: null, valor: 180, pessoa: 'Academia Top' }
   ];
+  filtro = new LancamentoFilter();
+
   ngOnInit() {
     this.title.setTitle('Pesquisa de lançamentos');
+  }
+
+
+  pesquisar() {
+    this.filtro.descricao = 'Salário';
+
+    this.lancamentoService.pesquisar(this.filtro).subscribe((resultado) => {
+      console.log(resultado);
+    });
+
   }
 
 }

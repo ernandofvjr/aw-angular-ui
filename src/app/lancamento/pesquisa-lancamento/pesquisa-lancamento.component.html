@@ -5,22 +5,24 @@
       <h1>Lançamentos</h1>
     </div>
 
-    <div class="ui-g-12 ui-fluid">
-      <label>Descrição</label>
-      <input type="text" pInputText/>
-    </div>
-    <div class="ui-g-12">
-      <label style="display: block">Vencimento</label>
-      <input style="width: 95px" type="text" pInputText/>
+    <form autocomplete="off" #f="ngForm">
+      <div class="ui-g-12 ui-fluid">
+        <label>Descrição</label>
+        <input type="text" pInputText/>
+      </div>
+      <div class="ui-g-12">
+        <label style="display: block">Vencimento</label>
+        <input style="width: 95px" type="text" pInputText/>
 
-      <label>até</label>
-      <input style="width: 95px" type="text" pInputText/>
+        <label>até</label>
+        <input style="width: 95px" type="text" pInputText/>
 
-    </div>
+      </div>
 
-    <div class="ui-g-12">
-      <p-button label="Pesquisar" ></p-button>
-    </div>
+      <div class="ui-g-12">
+        <p-button label="Pesquisar" (click)="pesquisar()"></p-button>
+      </div>
+    </form>
 
 
   </div>
