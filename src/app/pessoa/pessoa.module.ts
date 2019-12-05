@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PesquisaPessoaComponent } from './pesquisa-pessoa/pesquisa-pessoa.component';
 import { CadastroPessoaComponent } from './cadastro-pessoa/cadastro-pessoa.component';
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     FormsModule,
     RouterModule,
+    BrowserAnimationsModule,
 
     InputTextModule,
     ButtonModule,

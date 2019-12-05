@@ -4,3 +4,11 @@
 <!-- <app-pesquisa-pessoa></app-pesquisa-pessoa> -->
 <!-- <app-cadastro-lancamento></app-cadastro-lancamento> -->
 <!-- <app-cadastro-pessoa></app-cadastro-pessoa> -->
+
+<p-confirmDialog header="Confirmação" icon="pi pi-question-circle" #cd>
+    <p-footer>
+      <button type="button" pButton icon="pi pi-check" label="Sim" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="pi pi-times" label="Não" (click)="cd.reject()"></button>
+    </p-footer>
+</p-confirmDialog>
+

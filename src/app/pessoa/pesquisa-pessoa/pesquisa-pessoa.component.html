@@ -4,21 +4,25 @@
         <h1>Pessoas</h1>
       </div>
 
-      <div class="ui-g-12 ui-fluid">
-        <label>Nome</label>
-        <input type="text" pInputText/>
-      </div>
+      <form autocomplete="off" (ngSubmit)="pesquisar()">
 
-      <div class="ui-g-12">
-        <p-button label="Pesquisar" ></p-button>
-      </div>
+        <div class="ui-g-12 ui-fluid">
+          <label>Nome</label>
+          <input type="text" pInputText [(ngModel)]="filtro.nome" name="nome"/>
+        </div>
 
+        <div class="ui-g-12">
+          <p-button label="Pesquisar" ></p-button>
+        </div>
+
+      </form>
 
     </div>
 
     <div class="ui-g">
       <div class="ui-g-12">
-          <p-table [value]="pessoas" [paginator]="true" [rows]="5" [responsive]="true">
+          <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina" [responsive]="true"
+          [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
               <ng-template pTemplate="header">
                   <tr>
                       <th>Nome</th>
@@ -31,14 +35,15 @@
               <ng-template pTemplate="body" let-pess>
                   <tr>
                       <td class="col-nome">{{pess.nome}}</td>
-                      <td class="col-nome">{{pess.cidade}}</td>
-                      <td class="col-nome">{{pess.estado}}</td>
+                      <td class="col-nome">{{pess.endereco.cidade}}</td>
+                      <td class="col-nome">{{pess.endereco.estado}}</td>
                       <td class="col-nome"><a href="javascript:;" [pTooltip]="pess.ativo ? 'Desativar' : 'Ativar'"
-                        tooltipPosition="top">{{pess.ativo ? 'Ativo' : 'Inativo'}}</a></td>
+                        tooltipPosition="top" (click)="mudarStatus(pess)">{{pess.ativo ? 'Ativo' : 'Inativo'}}</a></td>
 
                       <td class="col-acoes">
-                        <button style="margin-right: 10px" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></button>
-                        <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                        <button style="margin-right: 10px" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                        [routerLink]="['/pessoas', pess.codigo]"></button>
+                        <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(pess)"></button>
                       </td>
 
                     </tr>

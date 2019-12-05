@@ -3,10 +3,11 @@ import { Pessoa } from './pessoa.model';
 export class Lancamento {
   codigo: number;
   descricao: string;
+  tipo = 'RECEITA';
   dataVencimento: Date;
   dataPagamento: Date;
   valor: number;
   observacao: string;
-  categoria: Categoria;
-  pessoa: Pessoa;
+  categoria = new Categoria();
+  pessoa = new Pessoa();
 }

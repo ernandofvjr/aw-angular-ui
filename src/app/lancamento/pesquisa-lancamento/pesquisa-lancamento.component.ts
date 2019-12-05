@@ -1,7 +1,15 @@
+import { CategoriaService } from './../../core/services/categoria.service';
+import { Title } from '@angular/platform-browser';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { LazyLoadEvent } from 'primeng/api/public_api';
+import {ConfirmationService} from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
+
+import { Lancamento } from './../../domain/lancamento.model';
+import { ResumoLancamento } from './../../domain/resumo-lancamento.dto';
 import { LancamentoFilter } from './../../core/classes/lancamento-filter';
 import { LancamentoService } from './../../core/services/lancamento.service';
-import { Title } from '@angular/platform-browser';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pesquisa-lancamento',
@@ -10,37 +18,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PesquisaLancamentoComponent implements OnInit {
 
-  constructor(private title: Title, private lancamentoService: LancamentoService) { }
-  lancamentos = [
-    { tipo: 'DESPESA', descricao: 'Compra de pão', dataVencimento: new Date(2017, 5, 30),
-      dataPagamento: null, valor: 4.55, pessoa: 'Padaria do José' },
-    { tipo: 'RECEITA', descricao: 'Venda de software', dataVencimento: new Date(2017, 5, 10),
-      dataPagamento: new Date(2017, 5, 30), valor: 80000, pessoa: 'Atacado Brasil' },
-    { tipo: 'DESPESA', descricao: 'Impostos', dataVencimento: new Date(2017, 6, 20),
-      dataPagamento: null, valor: 14312, pessoa: 'Ministério da Fazenda' },
-    { tipo: 'DESPESA', descricao: 'Mensalidade de escola', dataVencimento: new Date(2017, 5, 5),
-      dataPagamento: new Date(2017, 4, 30), valor: 800, pessoa: 'Escola Abelha Rainha' },
-    { tipo: 'RECEITA', descricao: 'Venda de carro', dataVencimento: new Date(2017, 7, 18),
-      dataPagamento: null, valor: 55000, pessoa: 'Sebastião Souza' },
-    { tipo: 'DESPESA', descricao: 'Aluguel', dataVencimento: new Date(2017, 6, 10),
-      dataPagamento: new Date(2017, 6, 9), valor: 1750, pessoa: 'Casa Nova Imóveis' },
-    { tipo: 'DESPESA', descricao: 'Mensalidade musculação', dataVencimento: new Date(2017, 6, 13),
-      dataPagamento: null, valor: 180, pessoa: 'Academia Top' }
-  ];
-  filtro = new LancamentoFilter();
+  constructor(private title: Title, private lancamentoService: LancamentoService, private toastr: ToastrService,
+              private confirmationService: ConfirmationService) { }
+  lancamentos: ResumoLancamento[] = [];
+  filtro: LancamentoFilter;
+  totalRegistros = 0;
+  @ViewChild('tabela', {static: false}) tabela;
 
   ngOnInit() {
     this.title.setTitle('Pesquisa de lançamentos');
+    this.filtro = new LancamentoFilter();
+  }
+  pesquisar(pagina = 0) {
+    this.filtro.pagina = pagina;
+    this.lancamentoService.pesquisar(this.filtro).subscribe((resultado) => {
+      this.lancamentos = resultado['content'];
+      this.totalRegistros = resultado['totalElements'];
+    });
   }
 
+  aoMudarPagina(event: LazyLoadEvent) {
+    const pagina = event.first / event.rows;
+    this.pesquisar(pagina);
+  }
 
-  pesquisar() {
-    this.filtro.descricao = 'Salário';
-
-    this.lancamentoService.pesquisar(this.filtro).subscribe((resultado) => {
-      console.log(resultado);
+  excluir(lancamento: any) {
+    this.lancamentoService.deletar(lancamento.codigo).subscribe(() => {
+      this.toastr.success('Lançamento excluído com sucesso!');
+      --this.totalRegistros;
+      this.tabela.reset();
     });
+  }
 
+  confirmarExclusao(lancamento: any) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(lancamento);
+      }
+    });
   }
 
 }
