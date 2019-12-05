@@ -99,6 +99,16 @@ export class CadastroLancamentoComponent implements OnInit {
     });
   }
 
+  resetar(form: FormControl) {
+    if (this.editando) {
+      this.router.navigate(['/lancamentos/novo'], {
+        relativeTo: this.route
+      });
+    } else {
+      this.lancamento = new Lancamento();
+    }
+  }
+
 
 
 

@@ -71,4 +71,14 @@ export class CadastroPessoaComponent implements OnInit {
     });
   }
 
+  resetar(form: FormControl) {
+    if (this.editando) {
+      this.router.navigate(['/pessoas/novo'], {
+        relativeTo: this.route
+      });
+    } else {
+      this.pessoa = new Pessoa();
+    }
+  }
+
 }
