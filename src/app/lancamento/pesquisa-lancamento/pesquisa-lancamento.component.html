@@ -55,8 +55,9 @@
 
                     <td class="col-acoes">
                       <button style="margin-right: 10px" pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
-                      [routerLink]="['/lancamentos', lanc.codigo]"></button>
-                      <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(lanc)"></button>
+                      [routerLink]="['/lancamentos', lanc.codigo]" [disabled]="!authService.hasAuthority('ROLE_CADASTRAR_LANCAMENTO')"></button>
+                      <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(lanc)"
+                       [disabled]="!authService.hasAuthority('ROLE_REMOVER_LANCAMENTO')"></button>
                     </td>
 
                   </tr>
@@ -65,7 +66,7 @@
     </div>
 
     <div class="ui-g-12">
-      <p-button routerLink="/lancamentos/novo" label="Novo Lançamento" ></p-button>
+      <button pButton routerLink="/lancamentos/novo" label="Novo Lançamento" [disabled]="!authService.hasAuthority('ROLE_CADASTRAR_LANCAMENTO')"></button>
     </div>
 
   </div>

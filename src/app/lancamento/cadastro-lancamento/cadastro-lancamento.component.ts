@@ -30,7 +30,7 @@ export class CadastroLancamentoComponent implements OnInit {
   lancamento: Lancamento;
 
   ngOnInit() {
-    const codigoLancamento = this.route.snapshot.params['codigo'];
+    const codigoLancamento = this.route.snapshot.params.codigo;
     let titulo = 'Cadastro de lançamento';
     this.lancamento = new Lancamento();
     if (codigoLancamento) {
@@ -63,7 +63,7 @@ export class CadastroLancamentoComponent implements OnInit {
     if (this.editando) {
       this.atualizar(form);
     } else {
-      this.salvar(form);
+      this.adicionar(form);
     }
 
   }

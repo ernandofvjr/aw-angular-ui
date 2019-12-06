@@ -1,3 +1,4 @@
+import { AuthService } from './../../core/services/auth.service';
 import { CategoriaService } from './../../core/services/categoria.service';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -19,7 +20,7 @@ import { LancamentoService } from './../../core/services/lancamento.service';
 export class PesquisaLancamentoComponent implements OnInit {
 
   constructor(private title: Title, private lancamentoService: LancamentoService, private toastr: ToastrService,
-              private confirmationService: ConfirmationService) { }
+              private confirmationService: ConfirmationService, private authService: AuthService) { }
   lancamentos: ResumoLancamento[] = [];
   filtro: LancamentoFilter;
   totalRegistros = 0;

@@ -21,7 +21,7 @@ export class CadastroPessoaComponent implements OnInit {
               private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    const codigoPessoa = this.route.snapshot.params['codigo'];
+    const codigoPessoa = this.route.snapshot.params.codigo;
     let titulo = 'Cadastro de Pessoa';
     this.pessoa = new Pessoa();
     this.pessoa.ativo = true;
@@ -78,6 +78,7 @@ export class CadastroPessoaComponent implements OnInit {
       });
     } else {
       this.pessoa = new Pessoa();
+      this.pessoa.ativo = true;
     }
   }
 

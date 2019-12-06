@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PesquisaPessoaComponent } from './pesquisa-pessoa/pesquisa-pessoa.component';
 import { CadastroPessoaComponent } from './cadastro-pessoa/cadastro-pessoa.component';
+import { PESSOAS_ROUTES } from './pessoa.routes';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
@@ -21,7 +22,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
     BrowserAnimationsModule,
 
     InputTextModule,
@@ -30,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     TooltipModule,
     InputMaskModule,
 
-    SharedModule
+    SharedModule,
+    RouterModule.forChild(PESSOAS_ROUTES)
   ],
   exports: [PesquisaPessoaComponent, CadastroPessoaComponent]
 })

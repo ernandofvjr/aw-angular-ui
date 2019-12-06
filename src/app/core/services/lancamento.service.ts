@@ -7,6 +7,7 @@ import { LancamentoFilter } from '../classes/lancamento-filter';
 import { Lancamento } from 'src/app/domain/lancamento.model';
 
 import * as moment from 'moment';
+import { AppHttp } from 'src/app/seguranca/app-http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,16 @@ import * as moment from 'moment';
 export class LancamentoService {
 
   LANCAMENTO_URL = `http://localhost:8080/lancamentos`;
-  Auth = 'YWRtaW5AZ21haWwuY29tOmFkbWlu';
+  // Auth = 'YWRtaW5AZ21haWwuY29tOmFkbWlu';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: AppHttp) { }
 
   pesquisar(filtro: LancamentoFilter): Observable<any[]> {
 
-    let headers = new HttpHeaders();
+    // let headers = new HttpHeaders();
     let params = new HttpParams();
 
-    headers = headers.append('Authorization', `Basic ${this.Auth}`);
+    // headers = headers.append('Authorization', `Basic ${this.Auth}`);
 
     params = params.append('page', filtro.pagina.toString());
     params = params.append('size', filtro.itensPorPagina.toString());
@@ -38,21 +39,18 @@ export class LancamentoService {
       params = params.append('dataVencimentoAte' , moment(filtro.dataVencimentoAte).format('YYYY-MM-DD'));
     }
 
-    return this.http.get<any[]>(`${this.LANCAMENTO_URL}?resumo`, {params, headers});
+    return this.http.get<any[]>(`${this.LANCAMENTO_URL}?resumo`, {params});
   }
 
   deletar(codigo: string): Observable<string> {
 
-    let headers = new HttpHeaders();
-    headers = headers.append('Authorization', `Basic ${this.Auth}`);
-
-    return this.http.delete<string>(`${this.LANCAMENTO_URL}/${codigo}`, {headers});
+    return this.http.delete<string>(`${this.LANCAMENTO_URL}/${codigo}`);
   }
 
   salvar(lancamento: Lancamento): Observable<Lancamento> {
 
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', `Basic ${this.Auth}`);
+    // headers = headers.append('Authorization', `Basic ${this.Auth}`);
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.post<Lancamento>(`${this.LANCAMENTO_URL}`, lancamento, {headers});
@@ -61,7 +59,7 @@ export class LancamentoService {
   atualizar(codigoLancamento: number, lancamento: any): Observable<Lancamento> {
 
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', `Basic ${this.Auth}`);
+    // headers = headers.append('Authorization', `Basic ${this.Auth}`);
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.put<Lancamento>(`${this.LANCAMENTO_URL}/${codigoLancamento}`, lancamento, {headers})
@@ -78,7 +76,7 @@ export class LancamentoService {
   buscarPorCodigo(codigo: number): Observable<Lancamento> {
 
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', `Basic ${this.Auth}`);
+    // headers = headers.append('Authorization', `Basic ${this.Auth}`);
     headers = headers.append('Content-Type', 'application/json');
 
     return this.http.get<Lancamento>(`${this.LANCAMENTO_URL}/${codigo}`, {headers})

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PesquisaLancamentoComponent } from './pesquisa-lancamento/pesquisa-lancamento.component';
 import { CadastroLancamentoComponent } from './cadastro-lancamento/cadastro-lancamento.component';
+import { LANCAMENTOS_ROUTES } from './lancamento.routes';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
@@ -19,15 +20,12 @@ import {DropdownModule} from 'primeng/dropdown';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { FormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [PesquisaLancamentoComponent, CadastroLancamentoComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,
-    RouterModule,
 
     InputTextModule,
     ButtonModule,
@@ -40,7 +38,8 @@ import { FormsModule } from '@angular/forms';
 
     NgxCurrencyModule,
 
-    SharedModule
+    SharedModule,
+    RouterModule.forChild(LANCAMENTOS_ROUTES)
   ],
   exports: [
     PesquisaLancamentoComponent,

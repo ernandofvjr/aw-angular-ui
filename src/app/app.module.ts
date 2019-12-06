@@ -1,5 +1,4 @@
-import { ROUTES } from './app.routes';
-import { RouterModule } from '@angular/router';
+import { SegurancaModule } from './seguranca/seguranca.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,10 +37,11 @@ registerLocaleData(localePt, 'pt');
     PessoaModule,
     SharedModule,
     CoreModule,
+    SegurancaModule,
 
     ConfirmDialogModule,
 
-    RouterModule.forRoot(ROUTES)
+    AppRoutingModule
   ],
   providers: [
     ConfirmationService,
