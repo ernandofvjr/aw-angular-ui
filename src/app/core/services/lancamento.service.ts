@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -14,10 +15,12 @@ import { AppHttp } from 'src/app/seguranca/app-http';
 })
 export class LancamentoService {
 
-  LANCAMENTO_URL = `http://localhost:8080/lancamentos`;
+  LANCAMENTO_URL: string;
   // Auth = 'YWRtaW5AZ21haWwuY29tOmFkbWlu';
 
-  constructor(private http: AppHttp) { }
+  constructor(private http: AppHttp) {
+    this.LANCAMENTO_URL = `${environment.apiURl}/lancamentos`;
+  }
 
   pesquisar(filtro: LancamentoFilter): Observable<any[]> {
 

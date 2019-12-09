@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { AppHttp } from 'src/app/seguranca/app-http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -9,9 +10,11 @@ import { Categoria } from './../../domain/categoria.model';
   providedIn: 'root'
 })
 export class CategoriaService {
-  CATEGORIA_URL = `http://localhost:8080/categorias`;
+  CATEGORIA_URL: string;
 
-  constructor(private http: AppHttp) { }
+  constructor(private http: AppHttp) {
+    this.CATEGORIA_URL = `${environment.apiURl}/categorias`;
+  }
 
   buscarTodos(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(`${this.CATEGORIA_URL}`);

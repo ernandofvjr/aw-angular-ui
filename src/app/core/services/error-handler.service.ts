@@ -98,7 +98,11 @@ export class ErrorHandlerService implements HttpInterceptor {
   }
 
   handleDefaultError(errorObj: any) {
-    this.toastrService.warning('Ocorreu um erro inesperado.');
+    let mensagem = 'Ocorreu um erro inesperado.';
+    if (errorObj.mensagemUsuario) {
+      mensagem = errorObj.mensagemUsuario;
+    }
+    this.toastrService.warning(mensagem);
   }
 
 }

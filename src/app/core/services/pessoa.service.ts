@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { AppHttp } from 'src/app/seguranca/app-http';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
@@ -12,9 +13,11 @@ import { PessoaFilter } from './../classes/pessoa-filter';
 })
 export class PessoaService {
 
-  PESSOA_URL = `http://localhost:8080/pessoas`;
+  PESSOA_URL: string;
 
-  constructor(private http: AppHttp) { }
+  constructor(private http: AppHttp) {
+    this.PESSOA_URL = `${environment.apiURl}/pessoas`;
+  }
 
   pesquisar(filtro: PessoaFilter): Observable<any[]> {
 

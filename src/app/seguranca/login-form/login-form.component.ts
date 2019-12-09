@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { AuthService } from './../../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,9 +10,10 @@ import { Router } from '@angular/router';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Login');
   }
 
   login(email: string, senha: string) {
