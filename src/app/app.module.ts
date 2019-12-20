@@ -1,7 +1,8 @@
+import { ROUTES } from './app.routes';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { SegurancaModule } from './seguranca/seguranca.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule, registerLocaleData } from '@angular/common';
@@ -27,7 +28,6 @@ registerLocaleData(localePt, 'pt');
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
@@ -41,7 +41,8 @@ registerLocaleData(localePt, 'pt');
 
     ConfirmDialogModule,
 
-    AppRoutingModule
+    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
+
   ],
   providers: [
     ConfirmationService,
