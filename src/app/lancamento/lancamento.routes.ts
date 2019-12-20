@@ -7,19 +7,19 @@ import { AuthGuard } from '../seguranca/guards/auth.guard';
 export const LANCAMENTOS_ROUTES: Routes = [
 
   {
-    path: 'lancamentos',
+    path: '',
     component: PesquisaLancamentoComponent,
     canActivate: [AuthGuard],
     data : {roles: ['ROLE_PESQUISAR_LANCAMENTO']}
   },
   {
-    path: 'lancamentos/novo',
+    path: 'novo',
     component: CadastroLancamentoComponent,
     canActivate: [AuthGuard],
     data : {roles: ['ROLE_CADASTRAR_LANCAMENTO']}
   },
   {
-    path: 'lancamentos/:codigo',
+    path: ':codigo',
     component: CadastroLancamentoComponent,
     canActivate: [AuthGuard],
     data : {roles: ['ROLE_CADASTRAR_LANCAMENTO']}

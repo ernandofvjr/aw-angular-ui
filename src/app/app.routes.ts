@@ -2,6 +2,14 @@ import { PaginaNaoEncontradaComponent } from './shared/pagina-nao-encontrada/pag
 import { Routes } from '@angular/router';
 export const ROUTES: Routes = [
   {
+    path: 'lancamentos',
+    loadChildren: () => import('./lancamento/lancamento.module').then(m => m.LancamentoModule)
+  },
+  {
+    path: 'pessoas',
+    loadChildren: () => import('./pessoa/pessoa.module').then(m => m.PessoaModule)
+  },
+  {
     path: '',
     redirectTo: 'lancamentos',
     pathMatch: 'full'

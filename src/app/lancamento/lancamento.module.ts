@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [PesquisaLancamentoComponent, CadastroLancamentoComponent],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     FormsModule,
 
     InputTextModule,

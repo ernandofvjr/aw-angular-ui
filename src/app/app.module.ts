@@ -33,15 +33,17 @@ registerLocaleData(localePt, 'pt');
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
 
-    LancamentoModule,
-    PessoaModule,
+    // LancamentoModule,
+    // PessoaModule,
     SharedModule,
     CoreModule,
     SegurancaModule,
 
     ConfirmDialogModule,
 
-    RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(ROUTES
+      , { preloadingStrategy: PreloadAllModules }
+      ),
 
   ],
   providers: [
